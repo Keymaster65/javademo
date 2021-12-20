@@ -64,6 +64,10 @@ licenseReport {
     filters = arrayOf<LicenseBundleNormalizer>(LicenseBundleNormalizer("""$projectDir/license-normalizer-bundle.json""", true))
 }
 
-tasks.assemble {
+tasks.jar {
+    dependsOn(tasks.findByName("checkLicense"))
+}
+
+tasks.compileTestJava {
     dependsOn(tasks.findByName("checkLicense"))
 }
